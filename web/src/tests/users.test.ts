@@ -2,9 +2,11 @@ import { createMocks } from 'node-mocks-http';
 import handleUsers from '@/pages/api/users';
 import { initializeUsers, addUser, getUsers, updateUserRole } from '@/models/User';
 
-beforeEach(() => {
-  
-  initializeUsers();
+beforeAll(() => {
+  return new Promise<void>(resolve => {
+    initializeUsers();
+    resolve();
+  })
 });
 
 describe('Users API', () => {
