@@ -1,18 +1,22 @@
 import { createMocks } from 'node-mocks-http';
 import handler from '@/pages/api/projects';
-import { getProjects, createProject, Project } from '@/models/Project';
-import { Task, getTasks, initializeProjectTasks } from '@/models/Tasks';
-import { getUsers, initializeUsers } from '@/models/User';
+import { getProjects, createProject, Project, deleteAllProjects } from '@/models/Project';
+import { Task, deleteTasks, getTasks, initializeProjectTasks } from '@/models/Tasks';
+import { getUsers, initializeUsers, deleteAllUsers } from '@/models/User';
 
 beforeEach(() => {
-  Project.idCounter =1;
-  Task.idCounter=1;
+  Project.idCounter = 1;
+  Task.idCounter = 1;
   (getProjects() as any[]).length = 0;
   (getTasks() as any[]).length = 0;
   (getUsers() as any[]).length = 0;
   initializeUsers()
 
 });
+
+// afterEach(() => {
+//   deleteAllUsers();
+// })
 
 describe('Projects API', () => {
   it('creates a new project with roles and initial tasks if the user is an admin', async () => {
@@ -36,7 +40,7 @@ describe('Projects API', () => {
     const projects = getProjects();
     expect(projects.length).toBe(1);
     expect(projects[0].members).toEqual({
-      admin:"1",
+      admin: "1",
       contributor: '123',
       approver: '234',
       reviewer: '345'
@@ -69,7 +73,7 @@ describe('Projects API', () => {
 
   it('deletes a project if the user is an admin', async () => {
     // Create a project to delete
-    const project = createProject('Project to delete', '1', '2', '3','1');
+    const project = createProject('Project to delete', '1', '2', '3', '1');
     initializeProjectTasks(project.id);
 
     const { req, res } = createMocks({

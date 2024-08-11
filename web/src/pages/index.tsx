@@ -1,9 +1,12 @@
 import React from 'react';
 import { Button } from 'antd';
+import Link from 'next/link';
 
 const Home = () => (
   <div className="App">
-    <Button type="primary">Button</Button>
+    <Link href='/login'>
+      <Button type="primary">Login</Button>
+    </Link>
   </div>
 );
 

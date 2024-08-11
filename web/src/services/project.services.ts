@@ -1,6 +1,7 @@
 import { ProjectModel } from "@/models/Project";
 import { readProjectData, writeProjectData } from "@/lib/projectData";
 import { _updateProjectRole, _deleteUserRole } from "./user.services";
+import { _deleteTasksByProjectId } from "./task.services";
 
 function _createProject(name: string, contributorId: string, approverId: string, reviewerId: string, userId: string) {
     const data = readProjectData();
@@ -36,7 +37,7 @@ function _createProjectIfExists(name: string, contributorId: string, approverId:
     const newProjectId = name.toLowerCase();
 
     const existingProject = _fetchProjectById(newProjectId);
-    if (existingProject != null) _deleteProject(newProjectId);
+    if (existingProject !== null) _deleteProject(newProjectId);
 
     const newProject = _createProject(name, contributorId, approverId, reviewerId, userId);
 
@@ -94,6 +95,8 @@ function _deleteProject(projectId: string) {
     _deleteUserRole(projectToDelete.members.approver);
     _deleteUserRole(projectToDelete.members.contributor);
     _deleteUserRole(projectToDelete.members.reviewer);
+
+    _deleteTasksByProjectId(projectToDelete.id);
 
     return projectToDelete;
 }

@@ -1,4 +1,5 @@
 import * as ProjectService from '@/services/project.services';
+import { initializeProjectTasks } from './Tasks';
 
 export interface ProjectModel {
     id: string;
@@ -35,8 +36,17 @@ function deleteProject(projectId: string) {
     return deletedProject;
 }
 
+function deleteAllProjects() {
+    const projects = getProjects();
+
+    for (var project of projects) {
+        ProjectService._deleteProject(project.id);
+    }
+}
+
 export {
     getProjects,
     createProject,
     deleteProject,
+    deleteAllProjects,
 }

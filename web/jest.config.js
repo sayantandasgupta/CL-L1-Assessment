@@ -16,6 +16,7 @@ const customJestConfig = {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  testSequencer: './testSequencer.js'
 };
 
 module.exports = createJestConfig(customJestConfig);

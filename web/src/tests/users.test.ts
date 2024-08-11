@@ -1,9 +1,9 @@
 import { createMocks } from 'node-mocks-http';
 import handleUsers from '@/pages/api/users';
-import { initializeUsers, addUser, getUsers, updateUserRole } from '@/models/User';
+import { initializeUsers, addUser, getUsers, updateUserRole, deleteAllUsers } from '@/models/User';
 
 beforeEach(() => {
-  
+
   initializeUsers()
 });
 

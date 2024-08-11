@@ -134,6 +134,18 @@ function _deleteTask(taskId: number) {
     return taskToDelete;
 }
 
+function _deleteTasksByProjectId(projectId: string) {
+    const taskData = readTaskData();
+
+    const tasks = taskData.tasks;
+
+    for (var task of tasks) {
+        if (task.projectId === projectId) _deleteTask(task.id);
+    }
+
+    return;
+}
+
 
 
 export {
@@ -142,5 +154,6 @@ export {
     _fetchTasksById,
     _updateTask,
     _deleteTask,
-    _activateNextGroup
+    _activateNextGroup,
+    _deleteTasksByProjectId,
 }

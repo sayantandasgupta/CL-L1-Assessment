@@ -78,10 +78,22 @@ function _deleteUserRole(userId: string) {
     return;
 }
 
+function _deleteUser(userId: string) {
+    const data = readUserData();
+    const userIdx = data.users.findIndex((user: User) => user.id === userId);
+
+    if (userIdx === -1) return null;
+
+    data.users.splice(userIdx, 1);
+    writeUserData(data);
+    return;
+}
+
 export {
     _createUser,
     _fetchUsers,
     _fetchUserById,
     _updateProjectRole,
-    _deleteUserRole
+    _deleteUserRole,
+    _deleteUser,
 }

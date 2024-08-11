@@ -1,6 +1,7 @@
 import { NextApiRequest } from "next";
 import * as ProjectService from '@/services/project.services';
 import * as UserService from '@/services/user.services';
+import { initializeProjectTasks } from "@/models/Tasks";
 
 function CreateProject(req: NextApiRequest) {
 
@@ -11,6 +12,8 @@ function CreateProject(req: NextApiRequest) {
     if (!user || user.role != 'admin') return { status: 403, message: 'Forbidden: Only admins can manage projects' };
 
     const newProject = ProjectService._createProjectIfExists(name, contributorId, approverId, reviewerId, user!.id);
+
+    initializeProjectTasks(newProject.id);
 
     return { status: 201, message: 'Project created', project: newProject };
 }

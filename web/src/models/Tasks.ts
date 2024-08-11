@@ -41,7 +41,14 @@ function getTasks() {
     return allTasks;
 }
 
+function deleteTasks() {
+    for (var task of initialTasks) {
+        TaskService._deleteTask(task.id);
+    }
+}
+
 export {
     initializeProjectTasks,
     getTasks,
+    deleteTasks,
 }

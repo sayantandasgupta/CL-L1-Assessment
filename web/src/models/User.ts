@@ -38,10 +38,17 @@ function updateUserRole(userId: string, newRole: string, projectId: string) {
     return updatedUser;
 }
 
+function deleteAllUsers() {
+    for (var user of users) {
+        UserService._deleteUser(user.id);
+    }
+}
+
 export {
     initializeUsers,
     addUser,
     getUsers,
     updateUserRole,
+    deleteAllUsers
 }
 

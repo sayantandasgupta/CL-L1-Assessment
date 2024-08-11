@@ -14,35 +14,19 @@
     },
     {
       "id": "4",
-      "role": "staff",
-      "project": {
-        "projectId": "project1",
-        "projectRole": "approver"
-      }
+      "role": "staff"
     },
     {
       "id": "123",
-      "role": "staff",
-      "project": {
-        "projectId": "project1",
-        "projectRole": "contributor"
-      }
+      "role": "staff"
     },
     {
       "id": "234",
-      "role": "staff",
-      "project": {
-        "projectId": "project1",
-        "projectRole": "approver"
-      }
+      "role": "staff"
     },
     {
       "id": "345",
-      "role": "staff",
-      "project": {
-        "projectId": "project1",
-        "projectRole": "reviewer"
-      }
+      "role": "staff"
     },
     {
       "id": "5",
