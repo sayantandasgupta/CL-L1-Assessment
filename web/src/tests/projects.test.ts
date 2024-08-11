@@ -4,13 +4,13 @@ import { getProjects, createProject, Project } from '@/models/Project';
 import { Task, getTasks, initializeProjectTasks } from '@/models/Tasks';
 import { getUsers, initializeUsers } from '@/models/User';
 
-beforeEach(async () => {
+beforeEach(() => {
   Project.idCounter =1;
   Task.idCounter=1;
   (getProjects() as any[]).length = 0;
   (getTasks() as any[]).length = 0;
   (getUsers() as any[]).length = 0;
-  await initializeUsers()
+  initializeUsers()
 
 });
 

@@ -1,6 +1,24 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import React, { ReactElement, ReactNode } from 'react';
+import type { NextPage } from 'next';
+import { ConfigProvider } from 'antd';
+import type { AppProps } from 'next/app';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+import theme from '@/theme/themeConfig';
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
 }
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+const App = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const getLayout = Component.getLayout ?? ((page) => page)
+
+  return getLayout(<ConfigProvider theme={theme}>
+    <Component {...pageProps} />
+  </ConfigProvider>)
+};
+
+export default App;

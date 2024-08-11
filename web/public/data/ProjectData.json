@@ -1,0 +1,24 @@
+{
+  "projects": [
+    {
+      "id": "project",
+      "name": "Project",
+      "members": {
+        "contributor": "2",
+        "approver": "3",
+        "reviewer": "4",
+        "admin": "1"
+      }
+    },
+    {
+      "id": "project1",
+      "name": "Project1",
+      "members": {
+        "contributor": "123",
+        "approver": "234",
+        "reviewer": "345",
+        "admin": "1"
+      }
+    }
+  ]
+}
